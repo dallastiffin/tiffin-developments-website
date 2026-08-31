@@ -87,19 +87,83 @@
     text-decoration:none;
   }
 
+  /* lead capture */
+  .lead-block{margin-top:44px;}
+  .lead-form{
+    display:flex;flex-wrap:wrap;gap:10px;
+    justify-content:center;
+    max-width:420px;margin-inline:auto;
+  }
+  .lead-form input{
+    flex:1;min-width:200px;
+    padding:14px 16px;
+    border-radius:2px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--text);
+    font-family:var(--font-body);
+    font-size:15px;
+  }
+  .lead-form input::placeholder{color:var(--text-muted);}
+  .lead-form input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent);}
+  .lead-form button{
+    padding:14px 22px;
+    border-radius:2px;
+    border:none;
+    background:var(--accent);
+    color:var(--accent-ink);
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .lead-form button:disabled{opacity:0.6;cursor:default;}
+  .form-status{margin-top:14px;font-size:14px;}
+  .form-status.success{color:var(--accent);}
+  .form-status.error{color:var(--text-muted);}
+  .or-divider{
+    margin-top:24px;
+    font-size:12.5px;
+    color:var(--text-muted);
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+  }
+  .call-btn{
+    display:inline-block;
+    margin-top:14px;
+    padding:13px 26px;
+    border-radius:2px;
+    border:1px solid var(--line);
+    color:var(--text);
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+  }
+  .call-btn:hover{border-color:var(--text-muted);}
+
   /* feature sections */
   .features{padding-bottom:clamp(96px,14vw,140px);}
-  .feature{
-    padding-block:clamp(44px,7vw,64px);
-    border-top:1px solid var(--line);
+  .features .wrap{max-width:760px;}
+  .feature-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
   }
-  .feature:last-child{border-bottom:1px solid var(--line);}
-  .feature h2{font-size:clamp(22px,3vw,26px);}
+  @media(min-width:640px){
+    .feature-grid{grid-template-columns:1fr 1fr;}
+  }
+  .feature{
+    background:var(--bg);
+    padding:clamp(32px,5vw,44px) clamp(28px,4vw,36px);
+  }
+  .feature h2{font-size:clamp(21px,2.6vw,24px);}
   .feature p{
     margin-top:14px;
     color:var(--text-muted);
-    font-size:17px;
-    max-width:52ch;
+    font-size:16.5px;
+    max-width:38ch;
   }
 
   footer{
@@ -120,29 +184,91 @@
 <div class="hero">
   <div class="wrap">
     <p class="brand">Tiffin Developments</p>
-    <h1>Home Service Lead Generation</h1>
+    <h1>Home Service Business Lead Generation</h1>
     <p class="lede">High quality organic leads, delivered directly to your business.</p>
     <a class="cta" href="mailto:tiffindevelopments@gmail.com?subject=I'd%20like%20to%20grow%20my%20business">Contact us if you want to grow your business</a>
+
+    <div class="lead-block">
+      <form class="lead-form" id="leadForm">
+        <input type="email" name="email" id="leadEmail" placeholder="you@company.com" required autocomplete="email">
+        <button type="submit" id="leadSubmit">Get a Callback</button>
+      </form>
+      <p class="form-status" id="formStatus" hidden></p>
+      <p class="or-divider">or</p>
+      <a class="call-btn" href="tel:+12266020654">Call (226) 602-0654</a>
+    </div>
   </div>
 </div>
 
+<script>
+(function(){
+  // Paste your Google Apps Script Web App URL here after deploying it (see README).
+  var WEBAPP_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+  var form = document.getElementById('leadForm');
+  var status = document.getElementById('formStatus');
+  var btn = document.getElementById('leadSubmit');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('leadEmail').value.trim();
+    if(!email) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    function showStatus(text, kind){
+      status.hidden = false;
+      status.textContent = text;
+      status.className = 'form-status ' + kind;
+      btn.disabled = false;
+      btn.textContent = 'Get a Callback';
+    }
+
+    try{
+      fetch(WEBAPP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          email: email,
+          source: 'tiffindevelopments.com',
+          page: window.location.href,
+          userAgent: navigator.userAgent,
+          submittedAt: new Date().toISOString()
+        })
+      }).then(function(){
+        showStatus("Thanks — we'll be in touch shortly.", 'success');
+        form.reset();
+      }).catch(function(){
+        showStatus("Something went wrong — email us directly at tiffindevelopments@gmail.com.", 'error');
+      });
+    } catch(err){
+      showStatus("Something went wrong — email us directly at tiffindevelopments@gmail.com.", 'error');
+    }
+  });
+})();
+</script>
+
 <div class="features">
   <div class="wrap">
-    <div class="feature">
-      <h2>Never miss a lead</h2>
-      <p>When a call goes unanswered, we send an instant text back so the conversation keeps going until you can follow up.</p>
-    </div>
-    <div class="feature">
-      <h2>Leads that are only yours</h2>
-      <p>Every inquiry comes straight to you. We don't sell or share your leads with other contractors in your area.</p>
-    </div>
-    <div class="feature">
-      <h2>Built to convert, not just exist</h2>
-      <p>A local website designed around your services and area, made to turn searches into real calls and quote requests.</p>
-    </div>
-    <div class="feature">
-      <h2>Every lead, tracked</h2>
-      <p>Calls and form submissions are tracked and routed straight to you, so you always know where your business is coming from.</p>
+    <div class="feature-grid">
+      <div class="feature">
+        <h2>Never miss a lead</h2>
+        <p>When a call goes unanswered, we send an instant text back so the conversation keeps going until you can follow up.</p>
+      </div>
+      <div class="feature">
+        <h2>Leads that are only yours</h2>
+        <p>Every inquiry comes straight to you. We don't sell or share your leads with other contractors in your area.</p>
+      </div>
+      <div class="feature">
+        <h2>Built to convert, not just exist</h2>
+        <p>A local website designed around your services and area, made to turn searches into real calls and quote requests.</p>
+      </div>
+      <div class="feature">
+        <h2>Every lead, tracked</h2>
+        <p>Calls and form submissions are tracked and routed straight to you, so you always know where your business is coming from.</p>
+      </div>
     </div>
   </div>
 </div>
