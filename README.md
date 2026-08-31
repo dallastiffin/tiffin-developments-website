@@ -19,8 +19,8 @@ The `CNAME` file points GitHub Pages at `www.tiffindevelopments.com`. To finish 
 
 ## Lead capture form
 
-The email form on the page posts to a Google Apps Script Web App, which appends each submission to the **Tiffin Developments — Website Leads** Google Sheet.
+The email form on the page posts to a Google Apps Script Web App, which appends each submission to the **Tiffin Developments Lead Form** Google Sheet. It logs to the sheet only — it does not send an email notification (that could be added to `Code.gs` with `MailApp.sendEmail` if wanted).
 
-- Sheet: https://docs.google.com/spreadsheets/d/1iKasqrgDaSatxUfWp-nRysuRJFrCwr3fOrpfH4KEZbc/edit
-- Script source: `Code.gs` in this repo
-- `index.html` has a `WEBAPP_URL` placeholder near the bottom that needs the deployed Web app URL pasted in (see the setup steps at the top of `Code.gs`) — until then, the form falls back to telling visitors to email directly.
+- Sheet: https://docs.google.com/spreadsheets/d/1_HqF14QRrvUSyQDdSr5esuLN6gfL5ZhG87w6XxzrmYI/edit
+- Script source: `Code.gs` in this repo (bound to the Sheet above, not the earlier "Website Leads" sheet)
+- `index.html`'s `WEBAPP_URL` is already wired to the deployed Web app URL — confirmed working end-to-end (real submission logged Aug 31, 2026).

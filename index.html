@@ -76,15 +76,12 @@
     margin-inline:auto;
   }
   .cta{
-    display:inline-block;
+    display:block;
     margin-top:40px;
-    padding:15px 28px;
-    border-radius:2px;
-    background:var(--accent);
-    color:var(--accent-ink);
+    font-family:var(--font-display);
     font-weight:600;
-    font-size:16px;
-    text-decoration:none;
+    font-size:clamp(18px,2.3vw,21px);
+    color:var(--accent);
   }
 
   /* lead capture */
@@ -186,7 +183,7 @@
     <p class="brand">Tiffin Developments</p>
     <h1>Home Service Business Lead Generation</h1>
     <p class="lede">High quality organic leads, delivered directly to your business.</p>
-    <a class="cta" href="mailto:tiffindevelopments@gmail.com?subject=I'd%20like%20to%20grow%20my%20business">Contact us if you want to grow your business</a>
+    <p class="cta">Contact us if you want to grow your business</p>
 
     <div class="lead-block">
       <form class="lead-form" id="leadForm">
