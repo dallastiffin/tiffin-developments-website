@@ -176,9 +176,25 @@
   }
   footer a{text-decoration:none;}
   footer a:hover{color:var(--text);}
+
+  /* top nav + AI section */
+  .topnav{border-bottom:1px solid var(--line);}
+  .topnav .navwrap{max-width:760px;margin-inline:auto;padding:16px clamp(16px,6vw,32px);display:flex;justify-content:flex-end;gap:18px;font-size:14.5px;flex-wrap:wrap;}
+  .topnav a{text-decoration:none;color:var(--text-muted);} .topnav a:hover{color:var(--text);}
+  .ai-section{padding-bottom:clamp(96px,14vw,140px);}
+  .ai-section .wrap{max-width:760px;}
+  .ai-section .section-head{text-align:center;margin-bottom:32px;}
+  .ai-section .section-head h2{font-size:clamp(28px,4.5vw,38px);}
+  .ai-section .section-head p{margin-top:14px;color:var(--text-muted);max-width:48ch;margin-inline:auto;}
+  a.feature{display:block;text-decoration:none;}
+  a.feature:hover h2{color:var(--accent);}
+  .more{display:inline-block;margin-top:14px;font-weight:600;font-size:14.5px;color:var(--accent);}
+  .ai-all{text-align:center;margin-top:28px;}
 </style>
 
-<div class="hero">
+<header class="topnav"><div class="navwrap"><a href="#top">Lead Generation</a><a href="ai-automation/">AI &amp; Automation</a><a href="tel:+12266020654">(226) 602-0654</a></div></header>
+
+<div class="hero" id="top">
   <div class="wrap">
     <p class="brand">Tiffin Developments</p>
     <h1>Lead Generation for Home Service Businesses</h1>
@@ -266,6 +282,47 @@
         <h2>Every lead, tracked</h2>
         <p>Calls and form submissions are tracked and routed straight to you, so you always know where your business is coming from.</p>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="ai-section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>AI &amp; Automation</h2>
+      <p>Practical AI for small businesses. We set it up, connect it to your tools and keep it running.</p>
+    </div>
+    <div class="feature-grid">
+      <a class="feature" href="ai-automation/ai-receptionist/">
+        <h2>AI Phone Receptionist</h2>
+        <p>A natural-sounding voice agent that answers every call, 24/7. It qualifies the caller, books the job and texts you the details.</p>
+        <span class="more">Learn more &rarr;</span>
+      </a>
+      <a class="feature" href="ai-automation/instant-lead-follow-up/">
+        <h2>Instant Lead Follow-Up</h2>
+        <p>Missed-call text back, instant replies to web forms and automatic follow-ups, so no lead waits and none go cold.</p>
+        <span class="more">Learn more &rarr;</span>
+      </a>
+      <a class="feature" href="ai-automation/ai-website-chat/">
+        <h2>AI Website Chat Assistant</h2>
+        <p>A chat assistant trained on your business that answers visitor questions, captures contact details and books jobs straight from your site.</p>
+        <span class="more">Learn more &rarr;</span>
+      </a>
+      <a class="feature" href="ai-automation/review-automation/">
+        <h2>Review &amp; Reputation Automation</h2>
+        <p>Automatic review requests after every job and AI-drafted replies to every review, so your Google rating keeps climbing.</p>
+        <span class="more">Learn more &rarr;</span>
+      </a>
+      <a class="feature" href="ai-automation/workflow-automation/">
+        <h2>Back-Office Workflow Automation</h2>
+        <p>Quotes, scheduling, invoicing, data entry and email sorting handled by connected AI workflows, so you get hours back every week.</p>
+        <span class="more">Learn more &rarr;</span>
+      </a>
+      <a class="feature" href="ai-automation/">
+        <h2>Not sure where to start?</h2>
+        <p>See every AI and automation service in one place, and how we work.</p>
+        <span class="more">All AI services &rarr;</span>
+      </a>
     </div>
   </div>
 </div>
