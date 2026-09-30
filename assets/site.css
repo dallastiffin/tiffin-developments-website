@@ -70,6 +70,8 @@ h3,.h3{
 }
 .lede{font-size:clamp(18px,1.6vw,21px);line-height:1.5;color:var(--ink-soft);max-width:44ch}
 .muted{color:var(--ink-soft)}
+.hero-title .hero-main{display:block;font-size:clamp(46px,7.4vw,92px);line-height:.98}
+.hero-title .hero-sub{display:block;margin-top:.45em;font-size:clamp(20px,2.4vw,30px);font-weight:600;font-variation-settings:"wdth" 100;letter-spacing:0;line-height:1.25;color:var(--ink-soft)}
 
 /* ---------- header ---------- */
 .site-head{border-bottom:1px solid var(--line)}
