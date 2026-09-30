@@ -1,26 +1,24 @@
-# Tiffin Developments — Landing Page
+# Tiffin Developments — tiffindevelopments.com
 
-Single-page marketing site for Tiffin Developments (home service lead generation).
+Static site: home page plus six service pages. No build step needed to deploy —
+push to `main` and GitHub Pages publishes to https://www.tiffindevelopments.com
+within a minute or two.
 
-- **Live URL:** https://dallastiffin.github.io/tiffin-developments-website/
-- **Custom domain (once DNS is set up):** https://www.tiffindevelopments.com
+## Pages
+- `index.html` — home
+- `services/<slug>/index.html` — AI phone receptionist, instant lead follow-up,
+  back-office workflow automation, AI chatbots, review automation, lead generation funnels
+- `ai-automation/…` — redirect stubs so the older URLs still work
+- `assets/site.css`, `assets/site.js` — shared styles and the lead form
 
-## Structure
+## Leads
+The "Book my free call" form (name, business, phone, email, city, service, message)
+posts to the portfolio **Lead Router** Apps Script with site key `tiffin-developments`.
+Each lead is added to the **Tiffin Developments - Website Leads** Google Sheet
+(in tiffindevelopments@gmail.com's Drive) and emailed to tiffindevelopments@gmail.com.
+Change the alert address in the Lead Router's Config tab — no code change needed.
 
-Everything lives in one self-contained file: `index.html` (HTML, CSS, and fonts loaded from Google Fonts — no build step, no dependencies).
+The `Register lead sheet` workflow (Actions tab) creates/links that sheet; it is safe to re-run.
 
-## Editing
-
-Edit `index.html` directly, commit, and push to `main` — GitHub Pages redeploys automatically within a minute or two.
-
-## Custom domain
-
-The `CNAME` file points GitHub Pages at `www.tiffindevelopments.com`. To finish connecting it, add a DNS record for that domain in Cloudflare (see the setup notes from the deployment session, or GitHub's [Pages custom domain docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)).
-
-## Lead capture form
-
-The email form on the page posts to a Google Apps Script Web App, which appends each submission to the **Tiffin Developments Lead Form** Google Sheet. It logs to the sheet only — it does not send an email notification (that could be added to `Code.gs` with `MailApp.sendEmail` if wanted).
-
-- Sheet: https://docs.google.com/spreadsheets/d/1_HqF14QRrvUSyQDdSr5esuLN6gfL5ZhG87w6XxzrmYI/edit
-- Script source: `Code.gs` in this repo (bound to the Sheet above, not the earlier "Website Leads" sheet)
-- `index.html`'s `WEBAPP_URL` is already wired to the deployed Web app URL — confirmed working end-to-end (real submission logged Aug 31, 2026).
+`Code.gs` is the retired email-only script from the old landing page. Its sheet,
+"Tiffin Developments Lead Form", keeps the older submissions.

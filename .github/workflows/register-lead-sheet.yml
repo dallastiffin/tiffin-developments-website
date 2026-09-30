@@ -1,0 +1,35 @@
+name: Register lead sheet
+# Registers this site with the portfolio Lead Router. The router creates the
+# "Tiffin Developments - Website Leads" Google Sheet on first run and is
+# idempotent after that. Run it again any time from the Actions tab.
+on:
+  workflow_dispatch:
+    inputs:
+      test_lead:
+        description: "Also send one test lead"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths: [".github/workflows/register-lead-sheet.yml"]
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Register site with Lead Router
+        env:
+          ENDPOINT: ${{ secrets.LEAD_ROUTER_ENDPOINT }}
+          SECRET: ${{ secrets.LEAD_ROUTER_SECRET }}
+        run: |
+          body=$(jq -nc --arg s "$SECRET" '{action:"register",secret:$s,site:"tiffin-developments",businessName:"Tiffin Developments",domain:"www.tiffindevelopments.com",notifyEmail:"tiffindevelopments@gmail.com",headerColor:"#14213D"}')
+          echo "Router reply:"
+          curl -sSL -H "Content-Type: text/plain" --data "$body" "$ENDPOINT" || echo "(readback failed; registration may still have succeeded)"
+          echo
+      - name: Send test lead
+        if: ${{ github.event_name == 'push' || inputs.test_lead }}
+        env:
+          ENDPOINT: ${{ secrets.LEAD_ROUTER_ENDPOINT }}
+        run: |
+          body='{"site":"tiffin-developments","name":"TEST LEAD - delete me","phone":"555-000-0000","email":"test@example.com","city":"Test","service":"Not sure yet","message":"Automated setup test from GitHub Actions. Safe to delete this row.","source":"Setup test","pageUrl":"https://www.tiffindevelopments.com/"}'
+          curl -sSL -H "Content-Type: text/plain" --data "$body" "$ENDPOINT" || true
+          echo

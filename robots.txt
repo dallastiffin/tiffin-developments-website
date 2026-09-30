@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+
 Sitemap: https://www.tiffindevelopments.com/sitemap.xml
