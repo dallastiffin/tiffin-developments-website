@@ -298,3 +298,17 @@ a.tag:hover{text-decoration:underline}
 .cta-box .btn{width:100%}
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
 .cta .cta-alt{margin-top:22px}
+
+/* Booking: Google Calendar appointment schedule embedded in the #book section */
+.cta--booking .grid{grid-template-columns:1fr}
+@media (min-width:900px){.cta--booking .grid{grid-template-columns:1fr}}
+.cta--booking .grid > div:first-child{max-width:62ch}
+.booking-cal{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 18px 50px -24px rgba(0,0,0,.55)}
+.booking-cal iframe{display:block;width:100%;height:720px;border:0}
+@media (max-width:620px){.booking-cal iframe{height:900px}}
+.booking-fallback{margin-top:12px;font-size:14.5px;color:var(--panel-muted)}
+.booking-fallback a{color:var(--panel-text);font-weight:650}
+.cta-msg{margin-top:22px}
+.cta-msg summary{cursor:pointer;font-weight:650;color:var(--panel-text);padding:10px 0}
+.cta-msg summary:focus-visible{outline:3px solid var(--signal);outline-offset:3px}
+.cta-msg .cta-box{margin-top:12px}
