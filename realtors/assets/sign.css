@@ -454,3 +454,7 @@ body{font-size:17px}
   .book-sec .sec-head{text-align:center}
   .cal-fallback,.msg summary{text-align:center}
 }
+/* lighter-blue click boxes in the demo panels */
+.demo-body .btn{background:#DCE7FA;color:#1B3A86;box-shadow:inset 0 0 0 2px #B7CBF2}
+.demo-body .btn:hover{background:#CCDCF7;box-shadow:inset 0 0 0 2px #93B0EA}
+.demo-body .btn .icon{color:#24479E}
