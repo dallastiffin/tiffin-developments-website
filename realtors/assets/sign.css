@@ -389,3 +389,13 @@ body{font-size:17px}
 }
 /* three systems */
 @media (min-width:640px){.incl{grid-template-columns:1fr}}
+/* centred sign face */
+.band,.panel-body{text-align:center}
+.band h1,.band p{margin-inline:auto}
+.panel-body{display:flex;flex-direction:column;align-items:center}
+.dial{justify-content:center}
+.dial .icon{display:none}
+.dial-note{margin-top:10px;margin-inline:auto;max-width:44ch}
+.dial-note strong{display:block;font-family:var(--display);font-weight:800;font-stretch:104%;font-size:19px;color:var(--ink);margin-bottom:2px}
+.riders .rider{justify-content:center}
+.tapcall{align-self:stretch}
