@@ -405,3 +405,12 @@ body{font-size:17px}
 .demo-body > .btn{margin-top:auto}
 .demo-body p:last-of-type,.demo-num{margin-bottom:18px}
 @media (min-width:980px){.demos{align-items:stretch}.demo{display:flex;flex-direction:column}.demo-body{flex:1}}
+/* hero sky and sun */
+.bar{background:#A9D3EF}
+.bar nav a:hover{background:rgba(255,255,255,.45)}
+.yard{background:linear-gradient(180deg,#A9D3EF 0%,#C7E3F5 55%,#E2F0FA 100%)}
+.yard::before{content:"";position:absolute;z-index:0;top:clamp(18px,4vw,48px);right:clamp(24px,12vw,200px);
+  width:clamp(64px,8vw,112px);aspect-ratio:1;border-radius:50%;background:#FFD45A;
+  box-shadow:0 0 0 clamp(8px,1.2vw,16px) rgba(255,224,130,.35),0 0 0 clamp(18px,2.6vw,34px) rgba(255,236,170,.2)}
+.yard .frame,.yard .lawn{position:relative;z-index:1}
+@media (max-width:640px){.yard::before{top:8px;right:12px;width:48px}}
