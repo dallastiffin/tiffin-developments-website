@@ -414,3 +414,43 @@ body{font-size:17px}
   box-shadow:0 0 0 clamp(8px,1.2vw,16px) rgba(255,224,130,.35),0 0 0 clamp(18px,2.6vw,34px) rgba(255,236,170,.2)}
 .yard .frame,.yard .lawn{position:relative;z-index:1}
 @media (max-width:640px){.yard::before{top:8px;right:12px;width:48px}}
+
+/* ===== colour coordination: one blue family, red only as the hero accent ===== */
+.demo-band{background:var(--cobalt)}
+.demo-band .icon{opacity:.9}
+.chat-tag{background:var(--cobalt)}
+.chat-tag::after{border-left-color:var(--cobalt)}
+.chat-tag [data-close]{background:rgba(255,255,255,.16)}
+.chat-tag [data-close]:hover{background:rgba(255,255,255,.28)}
+.try li::before,.fit li::before{background:var(--cobalt)}
+.steps li::before{color:var(--cobalt)}
+
+/* ===== centre everything on mobile ===== */
+@media (max-width:640px){
+  .sec-head,.sec-head p{text-align:center;margin-inline:auto}
+  .demo-body{align-items:center;text-align:center}
+  .demo-band{justify-content:center}
+  .lawn .wrap{flex-direction:column;text-align:center}
+  .lawn .btn{width:100%}
+  .split{text-align:center}
+  .split h2{margin-inline:auto}
+  .prose p{margin-inline:auto}
+  .sources{justify-content:center}
+  .price{justify-items:center;text-align:center}
+  .incl a{justify-content:center;text-align:center;flex-direction:column;align-items:center;gap:6px}
+  .rows > div{text-align:center}
+  .rows p{margin-inline:auto}
+  .steps li{text-align:center}
+  .fit li{padding-left:0;padding-top:24px;margin-inline:auto;text-align:center}
+  .fit li::before{left:50%;margin-left:-8px;top:0}
+  .faq summary{text-align:center;padding-inline:36px}
+  .faq details p{text-align:center;margin-inline:auto}
+  .log li{text-align:center}
+  .related a{text-align:center}
+  .foot-grid{text-align:center}
+  .foot .brand{justify-content:center}
+  .foot p{margin-inline:auto}
+  .foot .fine{text-align:center;margin-inline:auto}
+  .book-sec .sec-head{text-align:center}
+  .cal-fallback,.msg summary{text-align:center}
+}
