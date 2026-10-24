@@ -41,13 +41,13 @@
     var biz = val('business');
     var msg = val('message');
     var payload = {
-      site: SITE_KEY,
+      site: form.dataset.site || SITE_KEY,
       name: val('name'),
       phone: val('phone'),
       email: val('email'),
       city: val('city'),
       service: val('service'),
-      message: (biz ? 'Business: ' + biz + (msg ? '\n\n' : '') : '') + msg,
+      message: (biz ? (form.dataset.orgLabel || 'Business') + ': ' + biz + (msg ? '\n\n' : '') : '') + msg,
       source: 'Book a call — ' + (form.dataset.source || 'home'),
       pageUrl: window.location.href,
       botcheck: val('botcheck')

@@ -1,0 +1,81 @@
+/* Tiffin Developments for Real Estate Agents
+   Layered on ../../assets/site.css. Own palette: evergreen ink, sage signal,
+   and a "sold rider" red used only for the listing tag. */
+.re{
+  --paper:#F4F6F4;
+  --paper-2:#E5EBE7;
+  --ink:#12302A;
+  --ink-soft:#4B5E58;
+  --signal:#8FD9B6;
+  --signal-ink:#0E2621;
+  --panel:#12302A;
+  --panel-text:#ECF3EF;
+  --panel-muted:#9DB5AC;
+  --line:rgba(18,48,42,.14);
+  --focus:#1E6B57;
+  --rider:#C8402E;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .re{
+    --paper:#0C1B17;--paper-2:#132722;--ink:#E7F0EC;--ink-soft:#A2B8B0;
+    --signal:#8FD9B6;--signal-ink:#0E2621;--panel:#173A32;--panel-text:#ECF3EF;
+    --panel-muted:#9DB5AC;--line:rgba(231,240,236,.14);--focus:#8FD9B6;--rider:#E25A47;
+  }
+}
+:root[data-theme="dark"] .re{
+  --paper:#0C1B17;--paper-2:#132722;--ink:#E7F0EC;--ink-soft:#A2B8B0;
+  --signal:#8FD9B6;--signal-ink:#0E2621;--panel:#173A32;--panel-text:#ECF3EF;
+  --panel-muted:#9DB5AC;--line:rgba(231,240,236,.14);--focus:#8FD9B6;--rider:#E25A47;
+}
+.re .logo-mark{background:var(--ink)}
+.re .logo-mark::after{background:var(--signal)}
+.re .logo small{display:block;font-size:12.5px;font-weight:600;font-variation-settings:"wdth" 100;letter-spacing:0;color:var(--ink-soft);margin-top:-2px}
+.re .logo{align-items:center}
+.re .logo .logo-text{line-height:1.15}
+
+/* hero title: main line + plain sub line */
+.re .hero-title .hero-main{display:block}
+.re .hero-title .hero-sub{display:block;margin-top:.5em;font-size:clamp(20px,2.3vw,28px);font-weight:600;font-variation-settings:"wdth" 100;letter-spacing:0;line-height:1.25;color:var(--ink-soft)}
+
+/* listing card: the signature element */
+.listing{background:var(--panel);color:var(--panel-text);border-radius:16px;overflow:hidden;
+  box-shadow:0 24px 48px -28px rgba(6,20,17,.6)}
+.listing-top{display:grid;grid-template-columns:112px 1fr;gap:18px;padding:22px 24px;border-bottom:1px solid rgba(236,243,239,.12);align-items:center}
+.listing-photo{aspect-ratio:1/1;border-radius:10px;background:
+  linear-gradient(180deg,transparent 58%,rgba(0,0,0,.12) 58%),
+  linear-gradient(160deg,#9FC7B6,#5E8F7E);position:relative;overflow:hidden}
+.listing-photo svg{position:absolute;inset:auto 0 0 0;width:100%;height:auto}
+.listing-meta .rider{display:inline-block;background:var(--rider);color:#fff;font-weight:700;font-size:12.5px;padding:3px 8px;border-radius:4px;margin-bottom:8px}
+.listing-meta .addr{font-weight:700;font-variation-settings:"wdth" 110;font-size:18px;line-height:1.25}
+.listing-meta .spec{font-size:14px;color:var(--panel-muted);margin-top:4px}
+.listing .log{box-shadow:none;border-radius:0;background:transparent;padding-top:6px}
+.listing .log-head{display:none}
+.listing-foot{padding:14px 24px 20px;font-size:13px;color:var(--panel-muted)}
+
+/* four-service index on the landing page */
+.svc4{display:grid;grid-template-columns:1fr;gap:0;border-top:2px solid var(--ink)}
+@media (min-width:860px){.svc4{grid-template-columns:1fr 1fr}}
+.svc4 a{display:block;padding:30px 0 32px;border-bottom:1px solid var(--line);text-decoration:none}
+@media (min-width:860px){
+  .svc4 a{padding:34px 40px 36px 0}
+  .svc4 a:nth-child(even){padding-left:40px;padding-right:0;border-left:1px solid var(--line)}
+}
+.svc4 h3{font-size:clamp(23px,2.3vw,28px)}
+.svc4 .when{margin-top:6px;font-weight:650;font-size:15px;color:var(--ink)}
+.svc4 p{margin-top:10px;color:var(--ink-soft);max-width:48ch}
+.svc4 .go{display:inline-block;margin-top:16px;font-weight:650;font-size:15px;text-decoration:underline;text-decoration-color:var(--signal);text-decoration-thickness:3px;text-underline-offset:5px}
+.svc4 a:hover h3{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+
+.lead-sources{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;padding:0;list-style:none}
+.lead-sources li{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:15px;font-weight:550}
+.re .hero-title .hero-main{font-size:clamp(38px,4.4vw,60px);line-height:1.02}
+@media (max-width:520px){
+  .re .logo{font-size:15.5px;gap:8px}
+  .re .logo small{font-size:11.5px}
+  .re .logo-mark{width:22px;height:22px}
+  .re .nav .btn{padding:8px 10px;font-size:13.5px;min-height:38px}
+  .re .site-head .wrap{gap:10px}
+}
+@media (max-width:370px){.re .nav .btn{display:none}}
+.re .svc-title{font-size:clamp(38px,4.6vw,64px);line-height:1.02}
+.re .hero-title .hero-main{font-size:clamp(36px,4vw,56px)}

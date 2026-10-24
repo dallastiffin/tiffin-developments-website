@@ -12,6 +12,7 @@ on:
   push:
     branches: [main]
     paths: [".github/workflows/register-lead-sheet.yml"]
+# Sites registered: tiffin-developments (main site), tiffin-realtors (/realtors/)
 jobs:
   register:
     runs-on: ubuntu-latest
@@ -25,11 +26,18 @@ jobs:
           echo "Router reply:"
           curl -sSL -H "Content-Type: text/plain" --data "$body" "$ENDPOINT" || echo "(readback failed; registration may still have succeeded)"
           echo
+          body=$(jq -nc --arg s "$SECRET" '{action:"register",secret:$s,site:"tiffin-realtors",businessName:"Tiffin Developments - Realtors",domain:"",notifyEmail:"tiffindevelopments@gmail.com",headerColor:"#12302A"}')
+          echo "Router reply (realtors):"
+          curl -sSL -H "Content-Type: text/plain" --data "$body" "$ENDPOINT" || echo "(readback failed; registration may still have succeeded)"
+          echo
       - name: Send test lead
         if: ${{ github.event_name == 'push' || inputs.test_lead }}
         env:
           ENDPOINT: ${{ secrets.LEAD_ROUTER_ENDPOINT }}
         run: |
           body='{"site":"tiffin-developments","name":"TEST LEAD - delete me","phone":"555-000-0000","email":"test@example.com","city":"Test","service":"Not sure yet","message":"Automated setup test from GitHub Actions. Safe to delete this row.","source":"Setup test","pageUrl":"https://www.tiffindevelopments.com/"}'
+          curl -sSL -H "Content-Type: text/plain" --data "$body" "$ENDPOINT" || true
+          echo
+          body='{"site":"tiffin-realtors","name":"TEST LEAD - delete me","phone":"555-000-0000","email":"test@example.com","city":"Test","service":"Not sure yet","message":"Brokerage: Test Realty. Automated setup test. Safe to delete this row.","source":"Setup test","pageUrl":"https://www.tiffindevelopments.com/realtors/"}'
           curl -sSL -H "Content-Type: text/plain" --data "$body" "$ENDPOINT" || true
           echo
