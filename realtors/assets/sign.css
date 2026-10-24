@@ -399,3 +399,9 @@ body{font-size:17px}
 .dial-note strong{display:block;font-family:var(--display);font-weight:800;font-stretch:104%;font-size:19px;color:var(--ink);margin-bottom:2px}
 .riders .rider{justify-content:center}
 .tapcall{align-self:stretch}
+/* demo buttons: same size, same baseline */
+.demo-body{display:flex;flex-direction:column}
+.demo-body .btn{margin-top:auto;width:100%;min-height:50px}
+.demo-body > .btn{margin-top:auto}
+.demo-body p:last-of-type,.demo-num{margin-bottom:18px}
+@media (min-width:980px){.demos{align-items:stretch}.demo{display:flex;flex-direction:column}.demo-body{flex:1}}
