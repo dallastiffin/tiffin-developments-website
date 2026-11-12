@@ -4,7 +4,12 @@ Static site: home page plus six service pages. No build step needed to deploy �
 push to `main` and GitHub Pages publishes to https://www.tiffindevelopments.com
 within a minute or two.
 
-## Pages
+## Pages (Nov 2026 redesign)
+- Main site uses `assets/main.css` (simple teal/white). Built by `build_main.py` in the Web Content\\main-site folder.
+- Services: lead-generation-funnels, facebook-ads, google-ads, email-campaigns, chatbot-ai-text-back, ai-automation. Older service URLs redirect.
+- `assets/site.css` is still used by privacy.html.
+
+## Pages (older notes)
 - `index.html` — home
 - `services/<slug>/index.html` — AI phone receptionist, instant lead follow-up,
   back-office workflow automation, AI chatbots, review automation, lead generation funnels
