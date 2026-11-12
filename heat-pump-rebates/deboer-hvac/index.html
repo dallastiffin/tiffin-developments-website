@@ -74,6 +74,8 @@ fieldset{border:0;padding:0;min-width:0}
 .result{margin-top:20px;background:var(--paper-2);border-radius:8px;padding:16px 18px;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .result .k{font-size:14px;font-weight:600;color:var(--ink-soft)}
 .result .v{font-family:var(--display);font-weight:800;font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+.result .lines{flex-basis:100%;list-style:none;padding:10px 0 0;border-top:1px solid var(--line);display:grid;gap:4px;font-size:14px}
+.result .lines li{display:flex;justify-content:space-between;gap:12px}
 .result .how{flex-basis:100%;font-size:13px;color:var(--ink-soft)}
 
 .lead{margin-top:18px;display:grid;gap:10px}
@@ -151,8 +153,8 @@ footer p + p{margin-top:8px}
   <div class="wrap grid">
     <div>
       <span class="eyebrow">Brantford &amp; County of Brant</span>
-      <h1>Get up to <em>$7,500</em> back on a new heat pump.</h1>
-      <p class="sub">See your Ontario rebate in 20 seconds. We confirm it and handle the pre-approval for you.</p>
+      <h1>Get up to <em>$9,500</em> back on a new heat pump.</h1>
+      <p class="sub">See your Ontario and federal rebates in 20 seconds. We confirm them and handle the pre-approval for you.</p>
       <ul class="proof">
         <li>Registered Home Renovation Savings contractor</li>
         <li>225 Google reviews from Brantford-area homeowners</li>
@@ -193,8 +195,12 @@ footer p + p{margin-top:8px}
       </fieldset>
 
       <div class="result" aria-live="polite">
-        <span class="k">Your estimated rebate</span>
-        <span class="v" id="amount">$3,750</span>
+        <span class="k">Your estimated rebates</span>
+        <span class="v" id="amount">$5,750</span>
+        <ul class="lines">
+          <li><span>Ontario Home Renovation Savings</span><b id="prov"></b></li>
+          <li id="fedrow"><span>Federal National Heat Pump Rebate</span><b id="fed"></b></li>
+        </ul>
         <span class="how" id="how"></span>
       </div>
 
@@ -204,7 +210,7 @@ footer p + p{margin-top:8px}
           <label>Phone<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label>
         </div>
         <label>Postal code<input name="postal" autocomplete="postal-code" placeholder="N3S 7W9" required></label>
-        <button class="btn" type="submit" id="submit">Confirm my $3,750 rebate</button>
+        <button class="btn" type="submit" id="submit">Confirm my $5,750 in rebates</button>
         <p class="or">or call <a href="tel:+12495440677">249-544-0677</a></p>
         <p class="fine">No obligation. We call you back to confirm your home qualifies before any work starts.</p>
       </form>
@@ -243,7 +249,7 @@ footer p + p{margin-top:8px}
 
 <footer>
   <div class="wrap">
-    <p>Estimates use published Home Renovation Savings heat pump rates as of November 2026: air-source $1,250 per ton up to $7,500 for homes heated with electricity, oil, propane or wood, and $500 per ton up to $2,000 for Enbridge natural gas homes; ground-source $2,000 per ton up to $12,000, or a flat $3,000 for natural gas homes. Home size is used as a rough guide to system size. The final amount is set by the program after pre-approval. Home Renovation Savings is delivered by Enbridge Gas and Save on Energy.</p>
+    <p>Estimates use published Home Renovation Savings heat pump rates as of November 2026: air-source $1,250 per ton up to $7,500 for homes heated with electricity, oil, propane or wood, and $500 per ton up to $2,000 for Enbridge natural gas homes; ground-source $2,000 per ton up to $12,000, or a flat $3,000 for natural gas homes. Home size is used as a rough guide to system size. Final amounts are set by each program. Home Renovation Savings is delivered by Enbridge Gas and Save on Energy and requires pre-approval before installation. The federal National Heat Pump Rebate figures are as announced by the Government of Canada: $2,000, or up to $10,000 for households below the median income, for eligible cold-climate air-source heat pumps installed from November 1, 2026. Federal applications are not open yet and final rules may change.</p>
     <p>Preview built by Tiffin Developments for deBoer HVAC Services. Not published or endorsed by deBoer HVAC Services Ltd.</p>
   </div>
 </footer>
@@ -260,6 +266,8 @@ footer p + p{margin-top:8px}
     air:{nongas:{perTon:1250,max:7500},gas:{perTon:500,max:2000}},
     ground:{nongas:{perTon:2000,max:12000},gas:{flat:3000}}
   };
+  // Federal National Heat Pump Rebate as announced (applications open early 2027)
+  var FEDERAL={base:2000,lowIncomeMax:10000};
   var DEMO_MODE=true; // set to false and wire up the form when the contractor signs off
 
   var $=function(id){return document.getElementById(id)};
@@ -269,14 +277,21 @@ footer p + p{margin-top:8px}
   function estimate(){
     var fuel=pick('fuel'), tons=+pick('tons'), type=pick('type');
     var r=RATES[type][fuel==='gas'?'gas':'nongas'], amt, how;
-    if(r.flat){amt=r.flat;how='Flat rebate for ground-source systems in natural gas homes.';}
+    if(r.flat){amt=r.flat;how='Ontario pays a flat amount for ground-source systems in natural gas homes.';}
     else{
       amt=Math.min(r.perTon*tons,r.max);
-      how='About a '+tons+'-ton system at '+money(r.perTon)+' per ton'+(r.perTon*tons>r.max?', capped at '+money(r.max):'')+'.';
+      how='Ontario: about a '+tons+'-ton system at '+money(r.perTon)+' per ton'+(r.perTon*tons>r.max?', capped at '+money(r.max):'')+'.';
     }
+    var fed=type==='air'?FEDERAL.base:0;
+    $('prov').textContent=money(amt);
+    $('fedrow').hidden=!fed;
+    $('fed').textContent=money(fed);
+    how+=fed?' Federal: '+money(FEDERAL.base)+' for most households, or up to '+money(FEDERAL.lowIncomeMax)+' if your household income is below the median. Federal applications open in early 2027 for installs from November 1, 2026.'
+            :' The federal rebate covers air-source heat pumps only.';
+    amt+=fed;
     $('amount').textContent=money(amt);
     $('how').textContent=how;
-    $('submit').textContent='Confirm my '+money(amt)+' rebate';
+    $('submit').textContent='Confirm my '+money(amt)+' in rebates';
     return amt;
   }
   document.querySelectorAll('.opts input').forEach(function(i){i.addEventListener('change',estimate)});
