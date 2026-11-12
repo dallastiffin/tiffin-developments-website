@@ -22,11 +22,11 @@ jobs:
           ENDPOINT: ${{ secrets.LEAD_ROUTER_ENDPOINT }}
           SECRET: ${{ secrets.LEAD_ROUTER_SECRET }}
         run: |
-          body=$(jq -nc --arg s "$SECRET" '{action:"register",secret:$s,site:"tiffin-developments",businessName:"Tiffin Developments",domain:"www.tiffindevelopments.com",notifyEmail:"tiffindevelopments@gmail.com",headerColor:"#14213D"}')
+          body=$(jq -nc --arg s "$SECRET" '{action:"register",secret:$s,site:"tiffin-developments",businessName:"Tiffin Developments",domain:"www.tiffindevelopments.com",notifyEmail:"dallas@tiffindevelopments.com",headerColor:"#14213D"}')
           echo "Router reply:"
           curl -sSL -H "Content-Type: text/plain" --data "$body" "$ENDPOINT" || echo "(readback failed; registration may still have succeeded)"
           echo
-          body=$(jq -nc --arg s "$SECRET" '{action:"register",secret:$s,site:"tiffin-realtors",businessName:"Tiffin Developments - Realtors",domain:"",notifyEmail:"tiffindevelopments@gmail.com",headerColor:"#12302A"}')
+          body=$(jq -nc --arg s "$SECRET" '{action:"register",secret:$s,site:"tiffin-realtors",businessName:"Tiffin Developments - Realtors",domain:"",notifyEmail:"dallas@tiffindevelopments.com",headerColor:"#12302A"}')
           echo "Router reply (realtors):"
           curl -sSL -H "Content-Type: text/plain" --data "$body" "$ENDPOINT" || echo "(readback failed; registration may still have succeeded)"
           echo

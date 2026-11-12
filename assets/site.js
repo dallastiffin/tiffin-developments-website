@@ -1,6 +1,6 @@
 /* Tiffin Developments — lead form
    Posts to the portfolio Lead Router (Google Apps Script). Leads land in the
-   "Tiffin Developments - Website Leads" Google Sheet and email tiffindevelopments@gmail.com. */
+   "Tiffin Developments - Website Leads" Google Sheet and email dallas@tiffindevelopments.com. */
 (function(){
   var ENDPOINT = "https://script.google.com/macros/s/AKfycbyUzWIbd-lu-Lbsx4iQWj0bLN1fqSG2pyzyhrR7O4clNP8Rx0wFUqknTYX8_Cjhx77fng/exec";
   var SITE_KEY = "tiffin-developments";
@@ -52,7 +52,7 @@
       pageUrl: window.location.href,
       botcheck: val('botcheck')
     };
-    var fail = "That didn't go through. Call (226) 602-0654 or email tiffindevelopments@gmail.com.";
+    var fail = "That didn't go through. Call (226) 602-0654 or email dallas@tiffindevelopments.com.";
     try{
       fetch(ENDPOINT, {
         method:'POST', mode:'no-cors',
