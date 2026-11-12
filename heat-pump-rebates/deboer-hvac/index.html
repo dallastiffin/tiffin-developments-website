@@ -38,14 +38,21 @@ a{color:inherit}
 .preview b{font-weight:700}
 
 header{background:var(--brand);color:var(--on-brand)}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
 .logo{display:flex;align-items:center;min-height:56px}
 .logo img{height:56px;width:auto;display:block}
 .wordmark{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.01em;line-height:1.05}
 .wordmark small{display:block;font-family:var(--body);font-weight:400;font-size:12px;color:var(--on-brand-soft);letter-spacing:.04em}
-.callbtn{display:inline-flex;flex-direction:column;align-items:flex-end;text-decoration:none;line-height:1.15}
-.callbtn span{font-size:12px;color:var(--on-brand-soft)}
-.callbtn strong{font-family:var(--display);font-weight:700;font-size:22px;white-space:nowrap}
+.ph{width:22px;height:22px;flex:none}
+.callbtn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;line-height:1.1;background:var(--accent);color:var(--accent-ink);padding:10px 18px;border-radius:6px}
+.callbtn:hover{filter:brightness(1.06)}
+.callbtn:focus-visible{outline:3px solid var(--on-brand);outline-offset:2px}
+.callbtn small{display:block;font-size:12px;font-weight:600}
+.callbtn strong{font-family:var(--display);font-weight:800;font-size:24px;white-space:nowrap}
+.btn.call{display:flex;align-items:center;justify-content:center;gap:10px}
+.btn.dark{background:var(--brand);color:var(--on-brand)}
+.herocall{margin-top:28px;max-width:340px;font-size:22px;padding:17px 18px}
+.herocall + .hint{margin-top:8px;font-size:13px;color:var(--on-brand-soft)}
 
 .hero{background:var(--brand);color:var(--on-brand);padding:28px 0 56px}
 .grid{display:grid;grid-template-columns:1fr 1.05fr;gap:44px;align-items:start}
@@ -115,8 +122,10 @@ footer p + p{margin-top:8px}
   .hero{padding:22px 0 36px}
   .sub{max-width:none}
     .badges{grid-template-columns:1fr 1fr}
-  .callbtn span{display:none}
+  .callbtn{padding:8px 12px;gap:8px}
+  .callbtn small{display:none}
   .callbtn strong{font-size:18px}
+  .herocall{max-width:none}
   .logo img{height:44px}
   .sticky{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--brand);padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px))}
   .sticky .btn{font-size:16px;padding:13px 8px}
@@ -141,9 +150,9 @@ footer p + p{margin-top:8px}
            onerror="this.hidden=true;this.nextElementSibling.hidden=false">
       <div class="wordmark" hidden>deBoer HVAC<small>SERVICES LTD.</small></div>
     </div>
-    <a class="callbtn" href="tel:+12495440677">
-      <span>Talk to a rebate specialist</span>
-      <strong>249-544-0677</strong>
+    <a class="callbtn" href="tel:+12495440677" aria-label="Call 249-544-0677">
+      <svg class="ph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"/></svg>
+      <span><small>Tap to call</small><strong>249-544-0677</strong></span>
     </a>
   </div>
 </header>
@@ -160,6 +169,8 @@ footer p + p{margin-top:8px}
         <li>225 Google reviews from Brantford-area homeowners</li>
         <li>Up to 10-year parts and 1-year deBoer labour warranty</li>
       </ul>
+      <a class="btn call herocall" href="tel:+12495440677"><svg class="ph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"/></svg>Call 249-544-0677</a>
+      <p class="hint">Rather talk it through? Tap to call and get your number in minutes.</p>
     </div>
 
     <div class="calc" id="calc">
@@ -211,7 +222,8 @@ footer p + p{margin-top:8px}
         </div>
         <label>Postal code<input name="postal" autocomplete="postal-code" placeholder="N3S 7W9" required></label>
         <button class="btn" type="submit" id="submit">Confirm my $5,750 in rebates</button>
-        <p class="or">or call <a href="tel:+12495440677">249-544-0677</a></p>
+        <p class="or">or skip the form</p>
+        <a class="btn call dark" href="tel:+12495440677"><svg class="ph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"/></svg>Call 249-544-0677</a>
         <p class="fine">No obligation. We call you back to confirm your home qualifies before any work starts.</p>
       </form>
 
@@ -240,7 +252,7 @@ footer p + p{margin-top:8px}
     <h2 class="sec">Find out what you qualify for today.</h2>
     <p>One short call confirms your rebate and gets your pre-approval started.</p>
     <div class="row">
-      <a class="btn" href="tel:+12495440677">Call 249-544-0677</a>
+      <a class="btn call" href="tel:+12495440677"><svg class="ph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"/></svg>Call 249-544-0677</a>
       <a class="btn ghost" href="#calc">Calculate my rebate</a>
     </div>
   </div>
@@ -255,7 +267,7 @@ footer p + p{margin-top:8px}
 </footer>
 
 <div class="sticky">
-  <a class="btn" href="tel:+12495440677">Call now</a>
+  <a class="btn call" href="tel:+12495440677"><svg class="ph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"/></svg>Call now</a>
   <a class="btn ghost" href="#calc">Get my rebate</a>
 </div>
 
