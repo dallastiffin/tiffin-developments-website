@@ -186,3 +186,13 @@ img,svg{display:block;max-width:100%}
   .path .to{transform:rotate(90deg)}
   .group h3{text-align:center}
 }
+
+/* book a call: phone + email */
+.contact{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:760px){.contact{grid-template-columns:1fr 1fr}}
+.contact-item{display:flex;align-items:center;gap:16px;padding:20px 22px;border-radius:14px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);color:#fff;text-decoration:none;font-size:clamp(20px,2.2vw,26px);font-weight:600;letter-spacing:-.01em;min-width:0}
+.contact-item:hover{background:rgba(255,255,255,.1)}
+.contact-item .icon{width:28px;height:28px;color:#5CC9BE;flex:none}
+.contact-item span{min-width:0;overflow-wrap:anywhere}
+.contact-item small{display:block;font-size:14px;font-weight:500;color:#A9B7B4;letter-spacing:0}
+@media (max-width:620px){.contact-item{justify-content:center;text-align:left}}
