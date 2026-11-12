@@ -15,7 +15,7 @@
   --brand:#2B2C2E;
   --header-bg:#BD202E;
   --header-ink:#FFFFFF;
-  --hl:#FF7480;
+  --hl:#BD202E;
   --brand-2:#3A3B3E;
   --accent:#BD202E;
   --accent-ink:#FFFFFF;
@@ -140,6 +140,11 @@ footer p + p{margin-top:8px}
 }
 @media (max-width:420px){.lead .two{grid-template-columns:1fr}.result .v{font-size:38px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* reversed scheme: more white */
+.hero{background:var(--paper);color:var(--ink)}
+.sub{color:var(--ink-soft)}
+.herocall + .hint{color:var(--ink-soft)}
+.calc{border:1.5px solid var(--line);box-shadow:0 14px 34px rgba(27,32,36,.12)}
 </style>
 </head>
 <body>
