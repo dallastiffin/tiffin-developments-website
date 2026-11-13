@@ -30,9 +30,16 @@
       el.setAttribute('aria-invalid', bad ? 'true' : 'false');
       if(bad) missing.push(n === 'name' ? 'your name' : 'a phone number');
     });
+    ['trade','city'].forEach(function(n){
+      var el = form.elements[n];
+      if(!el || !el.required) return;
+      var bad = !el.value.trim();
+      el.setAttribute('aria-invalid', bad ? 'true' : 'false');
+      if(bad) missing.push(n === 'trade' ? 'your trade' : 'your town');
+    });
     if(missing.length){
       show('Please add ' + missing.join(' and ') + ' so we can reach you.', 'error');
-      form.elements[missing[0] === 'your name' ? 'name' : 'phone'].focus();
+      form.elements[{'your name':'name','a phone number':'phone','your trade':'trade','your town':'city'}[missing[0]]].focus();
       return;
     }
 
@@ -40,6 +47,8 @@
     btn.textContent = 'Sending…';
     var biz = val('business');
     var msg = val('message');
+    var trade = val('trade');
+    if(trade) msg = 'Trade: ' + trade + (msg ? '\n\n' + msg : '');
     var payload = {
       site: form.dataset.site || SITE_KEY,
       name: val('name'),
