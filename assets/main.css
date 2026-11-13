@@ -208,3 +208,6 @@ img,svg{display:block;max-width:100%}
 .opt.win{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal)}
 .opt.win .pay{background:var(--teal);color:#fff}
 @media (max-width:620px){.steps li{text-align:center}.steps .n{margin-inline:auto}}
+.tgroups{display:grid;gap:26px}
+.tgroup h3{font-size:15px;font-weight:600;letter-spacing:0;color:var(--muted);margin-bottom:10px}
+@media (max-width:620px){.tgroup h3{text-align:center}.tgroup .fit{justify-content:center}}
