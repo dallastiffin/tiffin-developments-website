@@ -198,6 +198,12 @@ img,svg{display:block;max-width:100%}
 @media (max-width:620px){.contact-item{justify-content:center;text-align:left}}
 
 /* contractor lead funnel */
+.intro{margin:0;padding:clamp(28px,4.5vw,44px) clamp(16px,4.5vw,32px) 0;display:flex;flex-direction:column;align-items:center}
+.intro-frame{width:100%;max-width:560px;border-radius:14px;overflow:hidden;background:var(--soft);box-shadow:0 10px 28px rgba(19,32,31,.1);line-height:0}
+.intro-frame video{display:block;width:100%;height:auto;aspect-ratio:1;background:var(--soft)}
+.intro figcaption{margin-top:12px;max-width:560px;font-size:14.5px;line-height:1.45;color:var(--muted);text-align:center}
+.intro figcaption span{white-space:nowrap}
+.hero.after-intro{padding-top:clamp(28px,4vw,48px)}
 .hero h1.wide{max-width:20ch}
 .steps{list-style:none;margin:0;padding:0;display:grid;gap:16px;grid-template-columns:1fr}
 @media (min-width:820px){.steps{grid-template-columns:repeat(3,1fr)}}
